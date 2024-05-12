@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <!--IMPORT jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../script.js" defer></script> 
+    <title>Pacienti</title>
+</head>
+<body>
+    <div class="headerContainer">
+        <nav class="header">
+            <ul>
+                <li><a href="./acasa-doctor.html">Acasa</a></li>
+                <li><a href="./pacienti.html">Vezi toti pacienti</a></li>
+                <li><a href="./pacienti.html">Consultatii</a></li>
+                <li><a href="./adauga-pacient.html">Adauga un pacient</a></li>
+                <li id="loginButton"><button id="logoutButton">Log out</button></li>
+            </ul>
+        </nav>
+    </div>
+
+
+<div class="container">
+    <h2>Adauga un pacient</h2>
+    <form id="patient-form" action="/pacient" method="POST">
+        <div class="groupForm">
+            <label for="name">Nume:</label><br>
+            <input type="text" id="name" name="name" placeholder="Nume" required>
+        </div>
+        <div class="groupForm">
+            <label for="surname">Prenume:</label><br>
+            <input type="text" id="surname" name="surname" placeholder="Prenume" required>
+        </div>
+        <div class="groupForm">
+            <label for="dob">Data Nasterii:</label><br>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <div class="groupForm">
+            <label for="history">Istoric Bolii:</label><br>
+            <textarea id="history" name="history" rows="4" cols="50" placeholder="Istoric Bolii"></textarea>
+        </div>
+        <div class="groupForm">
+            <label for="medication">Medicamentatie:</label><br>
+            <textarea id="medication" name="medication" rows="4" cols="50" placeholder="Medicamentatie"></textarea>
+        </div>
+        <div class="groupForm">
+            <label for="address">Adresa:</label><br>
+            <input type="text" id="address" name="address" placeholder="Adresa" required>
+        </div>
+        <div class="groupForm">
+            <label for="sex">Sex:</label><br>
+            <select id="sex" name="sex" required>
+                <option value="Feminin">Alegeti o optiune:</option>
+                <option value="Feminin">Feminin</option>
+                <option value="Masculin">Masculin</option>
+            </select>
+        </div>
+        <input type="submit" value="Trimite">
+    </form>
+</div>
+</body>
+</html>

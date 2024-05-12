@@ -1,0 +1,23 @@
+/***** Universal ******/
+.header { display: flex; justify-content: end; padding: 15px; }
+.header ul { display: flex; list-style-type: none; margin: 0; padding: 0; gap: 15px; }
+.wrapper { margin: 90px 30px; }
+
+/***** Acasa ******/
+/***** From ******/
+.groupForm { display: flex; padding: 15px; gap: 5px; }
+/***** Log-in/ Sing-up ******/
+.container { min-height: 100vh; justify-content: center; align-items: center; display: flex; flex-direction: column; text-align: center; }
+.container div > p span { color: red; }
+.container p { position: relative; top: 30px; } 
+.container p a { color: black;text-decoration: none; } 
+button { cursor: pointer; border: 0; border-radius: 4px; font-weight: 600; margin: 0 10px;  width: 200px;  padding: 10px 0; box-shadow: 0 0 20px rgba(104, 85, 224, 0.2); transition: 0.4s; }
+.reg { color: white; margin-top: 30px; background-color: rgba(104, 85, 224, 1); }
+.log { color: rgb(104, 85, 224); background-color: rgba(255, 255, 255, 1);  border: 1px solid rgba(104, 85, 224, 1);margin-top: 30px; }
+button:hover { color: white; box-shadow: 0 0 20px rgba(104, 85, 224, 0.6); background-color: rgba(104, 85, 224, 1); }
+select { gap: 10px; display: flex; }
+
+/******consultatii-doctor********/
+#patients-container{ display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.patient { border: 1px solid black; border-radius: 15px; padding: 15px; }
+.btns { display: flex; }
