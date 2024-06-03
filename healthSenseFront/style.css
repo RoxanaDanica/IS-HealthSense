@@ -21,3 +21,10 @@ select { gap: 10px; display: flex; }
 #patients-container{ display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 .patient { border: 1px solid black; border-radius: 15px; padding: 15px; }
 .btns { display: flex; }
+
+/* Update patient*/
+.btns button { margin-right: 5px; }
+.update-form { margin-top: 20px; }
+.update-form input,.update-form select,.update-form textarea,.update-form button { margin-bottom: 10px;display: block;width: 100%;padding: 8px;box-sizing: border-box; }
+.groupForm { margin-bottom: 15px; }
+.groupForm label { font-weight: bold;margin-bottom: 5px;display: block; }
