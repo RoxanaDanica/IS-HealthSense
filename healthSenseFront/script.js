@@ -112,9 +112,9 @@ fetch('http://localhost:8000/pacienti', {
     return response.json();
 })
 .then(responseData => {
-    // console.log('Response received:', responseData);
     const data = responseData.data;
     if (Array.isArray(data)) {
+        const patientsContainer = document.getElementById('patients-container');
         data.forEach(patient => {
             const patientDiv = document.createElement('div');
             patientDiv.classList.add('patient');
@@ -127,12 +127,10 @@ fetch('http://localhost:8000/pacienti', {
                 <p>Adresa: ${patient.adresa}</p>
                 <p>Sex: ${patient.sex}</p>
                 <div class='btns'>
-                <button class='deleteBtn' data-id='${patient.id}' >Sterge</button>
-                <button class='UpdateBtn' data-id='${patient.id}' >Modifica pacient</button>
+                    <button class='deleteBtn' data-id='${patient._id}'>Sterge</button>
+                    <button class='updateBtn' data-id='${patient._id}'>Modifica pacient</button>
                 </div>
             `;
-
-            const patientsContainer = document.getElementById('patients-container');
             patientsContainer.appendChild(patientDiv);
         });
     } else {
@@ -141,6 +139,31 @@ fetch('http://localhost:8000/pacienti', {
 })
 .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
+});
+
+// Handle delete button click
+$(document).on('click', '.deleteBtn', function() {
+    const patientId = $(this).data('id');
+    fetch(`http://localhost:8000/pacient/${patientId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Patient deleted:', data);
+        // Remove the patient's div from the DOM
+        $(this).closest('.patient').remove();
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 });
 
 /*********add new patient************/
