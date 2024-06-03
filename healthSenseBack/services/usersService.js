@@ -40,6 +40,15 @@ async function insertUsers() {
     return res;
 }
 
+async function checkUser(user) {
+    const col = db.collection('users');
+    const res = col.findOne({
+        user
+    })
+
+    return res;
+}
+
 // create new account
 async function addNewUser(user) {
     try {
@@ -94,6 +103,7 @@ async function logInUser({ user, password }) {
 
 module.exports = {
     insertUsers,
+    checkUser,
     addNewUser,
     logInUser
 };

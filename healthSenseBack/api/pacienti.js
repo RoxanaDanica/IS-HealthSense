@@ -28,6 +28,7 @@ router.get('/pacienti', async (req, res) => {
 
 router.post('/pacient', async (req, res) => {
   const newPatient = req.body;
+  console.log(req.body);
 
   try {
     validatePatientData(newPatient)

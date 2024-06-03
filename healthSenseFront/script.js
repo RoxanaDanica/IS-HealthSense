@@ -82,20 +82,30 @@ $(document).ready(function(){
             return response.json();
         })
         .then(data => {
-            console.log('Response received:', data);
+            // console.log('Response received:', data);
             if(data?.status === 'Doctor') {
-                window.location('./acasa-doctor.html');
+                window.location = './doctor./acasa-doctor.html';
+            } else if(data?.status === 'Pacient') {
+                window.location = './pacient./acasa-pacient.html';
+            } else {
+                console.log('EROARE LA LOGARE');
             }
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            container = document.createElement('div');
+            container.id = 'error-container';
+            const form = document.getElementById('signup-form');
+            const parent = form.parentElement;
+            parent.insertBefore(container, form.nextSibling);
+            const errorMessage = document.createElement('div');
+            errorMessage.textContent = 'Utilizatorul exista deja. Va rugam sa incercati cu alte date.';
+            container.appendChild(errorMessage);
         });
     });
     $('#logoutButton').click(function() {
         localStorage.removeItem("status");
         window.location.href = "../log-in.html";
     });
-
 });
 
 /**********Get patients*************/
@@ -273,25 +283,88 @@ $(document).on('submit', '.update-form', function(event) {
 });
 
 
-/*********add new patient************/
-document.getElementById('patient-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var formData = new FormData(this); 
-    fetch('http://localhost:8000/pacient', {
-        method: 'POST',
-        body: formData 
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Response received:', data);
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+// /*********add new patient************/
+$(document).ready(function() {
+    $('#patient-form').on('submit', function(event) {
+        event.preventDefault();
+
+        // var isValid = true;
+        
+        // var nume = $('#nume').val().trim();
+        // if (nume === '') {
+        //     $('#numeError').text('Numele este obligatoriu.');
+        //     isValid = false;
+        // } else if (!/^[a-zA-Z]+$/.test(nume)) {
+        //     $('#numeError').text('Campul Nume accepta doar litere.');
+        //     isValid = false;
+        // } else {
+        //     $('#numeError').text('');
+        // }
+        // var prenume = $('#prenume').val().trim();
+        // if (prenume === '') {
+        //     $('#prenumeError').text('Prenumele este obligatoriu.');
+        //     isValid = false;
+        // } else if (!/^[a-zA-Z]+$/.test(prenume)) {
+        //     $('#prenumeError').text('Campul Prenume accepta doar litere.');
+        //     isValid = false;
+        // } else {
+        //     $('#prenumeError').text('');
+        // }
+        // if (!isValid) {
+        //     event.preventDefault();
+        // } else {
+        //     localStorage.setItem('formSubmitted', true);
+        // }
+
+        const newPatientData = {
+            nume: $('#nume').val(),
+            prenume: $('#prenume').val(),
+            dataNasterii: $('#dataNasterii').val(),
+            istoricBolii: $('#istoricBolii').val(),
+            medicamentatie: $('#medicamentatie').val(),
+            adresa: $('#adresa').val(),
+            sex: $('#sex').val(),
+        };
+        console.log(newPatientData);
+        fetch('http://localhost:8000/pacient', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPatientData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Patient added:', data);
+            const successMessage = $('<div class="success-message">Ati adaugat pacientul cu succes!</div>');
+            $('#patient-form').prepend(successMessage);
+            $('#patient-form')[0].reset();
+            const newPatientDiv = document.createElement('div');
+            newPatientDiv.classList.add('patient');
+            newPatientDiv.innerHTML = `
+                <p>Nume: ${data.nume}</p>
+                <p>Prenume: ${data.prenume}</p>
+                <p>Data nasterii: ${data.dataNasterii}</p>
+                <p>Istoric al bolii: ${data.istoricBolii}</p>
+                <p>Medicamentatie: ${data.medicamentatie}</p>
+                <p>Adresa: ${data.adresa}</p>
+                <p>Sex: ${data.sex}</p>
+                <div class='btns'>
+                    <button class='deleteBtn' data-id='${data._id}'>Sterge</button>
+                    <button class='updateBtn' data-id='${data._id}'>Modifica pacient</button>
+                </div>
+            `;
+            $('#patients-container').append(newPatientDiv);
+            
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+        
     });
 });
-

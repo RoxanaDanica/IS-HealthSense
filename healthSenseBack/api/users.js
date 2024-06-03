@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { 
     insertUsers,
+    checkUser,
     addNewUser,
     logInUser
   } = require('../services/usersService');
@@ -26,8 +27,13 @@ router.post('/signup', async (req, res) => {
       return;
     }
   
+    if(checkUser(newUser.user)) {
+      res.status(300).send('Utilizatorul deja exista');
+      return;
+    }
+
     const result = await addNewUser(newUser);
-    res.status(201).json({ message: 'User added successfully', user: result });
+    res.status(201).json({ 'user': req.body.user, 'status': req.body.status });
 });
 
 router.post('/login', async (req, res) => {

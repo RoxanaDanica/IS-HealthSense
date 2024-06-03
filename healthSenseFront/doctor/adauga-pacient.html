@@ -14,7 +14,7 @@
         <nav class="header">
             <ul>
                 <li><a href="./acasa-doctor.html">Acasa</a></li>
-                <li><a href="./pacienti.html">Vezi toti pacienti</a></li>
+                <li><a href="./pacienti.html">Vezi toti pacientii</a></li>
                 <li><a href="./pacienti.html">Consultatii</a></li>
                 <li><a href="./adauga-pacient.html">Adauga un pacient</a></li>
                 <li id="loginButton"><button id="logoutButton">Log out</button></li>
@@ -22,44 +22,50 @@
         </nav>
     </div>
 
-
-<div class="container">
-    <h2>Adauga un pacient</h2>
-    <form id="patient-form" action="/pacient" method="POST">
-        <div class="groupForm">
-            <label for="name">Nume:</label><br>
-            <input type="text" id="nume" name="nume" placeholder="Nume" required>
-        </div>
-        <div class="groupForm">
-            <label for="surname">Prenume:</label><br>
-            <input type="text" id="prenume" name="prenume" placeholder="Prenume" required>
-        </div>
-        <div class="groupForm">
-            <label for="dob">Data Nasterii:</label><br>
-            <input type="date" id="dataNasterii" name="dataNasterii" required>
-        </div>
-        <div class="groupForm">
-            <label for="history">Istoric Bolii:</label><br>
-            <textarea id="istoricBolii" name="istoricBolii" rows="4" cols="50" placeholder="Istoric Bolii"></textarea>
-        </div>
-        <div class="groupForm">
-            <label for="medication">Medicamentatie:</label><br>
-            <textarea id="Medicamentatie" name="Medicamentatie" rows="4" cols="50" placeholder="Medicamentatie"></textarea>
-        </div>
-        <div class="groupForm">
-            <label for="address">Adresa:</label><br>
-            <input type="text" id="Adresa" name="Adresa" placeholder="Adresa" required>
-        </div>
-        <div class="groupForm">
-            <label for="sex">Sex:</label><br>
-            <select id="sex" name="sex" required>
-                <option value="Feminin">Alegeti o optiune:</option>
-                <option value="Feminin">Feminin</option>
-                <option value="Masculin">Masculin</option>
-            </select>
-        </div>
-        <input type="submit" value="Trimite">
-    </form>
-</div>
+    <div class="container">
+        <h2>Adauga un pacient</h2>
+        <form id="patient-form" action="/pacient" method="POST">
+            <div class="form-group">
+                <label for="nume">Nume:</label>
+                <input type="text" id="nume" name="nume" class="input-field" placeholder="Nume" required>
+                <span class="error" id="nume-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="prenume">Prenume:</label>
+                <input type="text" id="prenume" name="prenume" class="input-field" placeholder="Prenume" required>
+                <span class="error" id="prenume-error"></span>
+            </div>
+            <div class="form-groupDataNasterii">
+                <label for="dataNasterii">Data Nasterii:</label>
+                <input type="date" id="dataNasterii" name="dataNasterii" class="input-field" required>
+                <span class="error" id="dataNasterii-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="istoricBolii">Istoric Bolii:</label>
+                <textarea id="istoricBolii" name="istoricBolii" class="input-field" rows="4" cols="50" placeholder="Istoric Bolii"></textarea>
+                <span class="error" id="istoricBolii-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="medicamentatie">Medicamentatie:</label>
+                <textarea id="medicamentatie" name="medicamentatie" class="input-field" rows="4" cols="50" placeholder="Medicamentatie"></textarea>
+                <span class="error" id="medicamentatie-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="adresa">Adresa:</label>
+                <input type="text" id="adresa" name="adresa" class="input-field" placeholder="Adresa">
+                <span class="error" id="adresa-error"></span>
+            </div>
+            <div class="form-groupSex">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex" class="input-field" required>
+                    <option value="">Alegeti o optiune:</option>
+                    <option value="Feminin">Feminin</option>
+                    <option value="Masculin">Masculin</option>
+                </select>
+                <span class="error" id="sex-error"></span>
+            </div>
+            <input type="submit" value="Trimite">
+        </form>
+    </div>
 </body>
 </html>

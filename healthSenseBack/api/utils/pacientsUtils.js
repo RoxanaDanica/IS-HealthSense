@@ -12,11 +12,11 @@ function validatePatientData(patient) {
   if(!patient.medicamentatie) { 
     throw new Error('Please provide a value for field "medicamentatie".');
   }
-  if(!patient.istoric_al_bolii) { 
+  if(!patient.istoricBolii) { 
     throw new Error('Please provide a value for field "istoric_al_bolii".');
   }
-  if(!patient.varsta) { 
-    throw new Error('Please provide a value for field "varsta".');
+  if(!patient.dataNasterii) { 
+    throw new Error('Please provide a value for field "data nasterii".');
   }
 }
 
