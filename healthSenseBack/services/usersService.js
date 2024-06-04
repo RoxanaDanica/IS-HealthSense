@@ -42,9 +42,9 @@ async function insertUsers() {
 
 async function checkUser(user) {
     const col = db.collection('users');
-    const res = col.findOne({
+    const res = await col.findOne({
         user
-    })
+    });
 
     return res;
 }

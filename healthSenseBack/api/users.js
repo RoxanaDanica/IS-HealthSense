@@ -19,7 +19,7 @@ const {
 
 router.post('/signup', async (req, res) => {
     const newUser = req.body;
-  
+
     try {
         validateUserData(newUser)
     } catch(error) {
@@ -27,13 +27,14 @@ router.post('/signup', async (req, res) => {
       return;
     }
   
-    if(checkUser(newUser.user)) {
-      res.status(300).send('Utilizatorul deja exista');
-      return;
+    const userExists = await checkUser(newUser.user);
+    if (userExists) {
+        res.status(409).send('Utilizatorul deja exista');
+        return;
     }
 
     const result = await addNewUser(newUser);
-    res.status(201).json({ 'user': req.body.user, 'status': req.body.status });
+    res.status(201).json({ 'user': newUser.user, 'status': newUser.status });
 });
 
 router.post('/login', async (req, res) => {

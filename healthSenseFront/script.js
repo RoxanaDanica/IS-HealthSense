@@ -77,15 +77,16 @@ $(document).ready(function(){
             })
         .then(response => {
             if (!response.ok) {
+                console.log('Response !ok',response);
                 throw new Error('Network response was not ok');
             }
             return response.json();
         })
         .then(data => {
-            // console.log('Response received:', data);
-            if(data?.status === 'Doctor') {
+            console.log('Response received:', data);
+            if(data?.status === 'Doctor' || data?.status === 'doctor') {
                 window.location = './doctor./acasa-doctor.html';
-            } else if(data?.status === 'Pacient') {
+            } else if(data?.status === 'Pacient' || data?.status === 'pacient') {
                 window.location = './pacient./acasa-pacient.html';
             } else {
                 console.log('EROARE LA LOGARE');
@@ -100,6 +101,7 @@ $(document).ready(function(){
             const errorMessage = document.createElement('div');
             errorMessage.textContent = 'Utilizatorul exista deja. Va rugam sa incercati cu alte date.';
             container.appendChild(errorMessage);
+            console.log('is an error:', error);
         });
     });
     $('#logoutButton').click(function() {
@@ -192,7 +194,7 @@ $(document).on('click', '.updateBtn', function() {
     };
 
     const updateFormHtml = `
-        <form class="update-form" data-id="${patientId}">
+        <form class="update-form" id="patient-form" data-id="${patientId}">
             <div class="groupForm">
                 <label for="nume">Nume:</label><br>
                 <input type="text" name="nume" value="${patientDetails.nume}" required>
