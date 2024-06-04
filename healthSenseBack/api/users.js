@@ -44,14 +44,16 @@ router.post('/login', async (req, res) => {
       res.status(400).json({ message: error.message });
       return;
     }
+
     const result = await logInUser(req.body);
     if(result?.user) {
-      // succes
     } else {
-      // Eroare
       res.status(400).send('There is no such user');
+      return;
     }
+    
     res.send(result);
+    return;
   });
 
 module.exports = router;
