@@ -3,12 +3,15 @@ const router = express.Router();
 
 const { 
     retrieveConsultatii,
+    retrieveConsultatiiByFilter,
     insertConsultatii,
     addNewConsultatie,
     updateConsultatie,
     deleteConsultatie,
     retrieveConsultatie,
   } = require('../services/consultatiiService');
+
+  const { validateConsultatieData } = require('./utils/consultatieUtils');
 
 // router.get('/save', async (req, res) => {
 //   const consultatii = await insertConsultatii();
@@ -24,6 +27,12 @@ router.get('/consultatii', async (req, res) => {
     });
   });
 
+router.get('/consultatiiByEmail/:email', async (req, res) => {
+  const consultatii = await retrieveConsultatiiByFilter({ email: req.params.email });
+  res.send(consultatii);
+  return;
+});
+
 router.get('/consultatie/:_id', async (req, res) => {
   const consultatie = await retrieveConsultatie(req.params._id);
   res.send({
@@ -36,7 +45,7 @@ router.post('/consultatie', async (req, res) => {
   console.log(req.body);
 
   try {
-      validateConsultatietData(newConsultatie)
+    validateConsultatieData(newConsultatie)
   } catch(error) {
       res.status(400).json({ message: error.message });
       return;
@@ -49,7 +58,7 @@ router.post('/consultatie', async (req, res) => {
 router.put('/consultatie', async (req, res) => {
   const idConsultatie = req.body._id;
   try {
-      validateConsultatietData(req.body)
+    validateConsultatieData(req.body)
   } catch(error) {
       res.status(400).json({ message: error.message });
       return;
@@ -68,8 +77,6 @@ router.delete('/consultatie/:_id', async (req, res) => {
   const result = await deleteConsultatie(req.params._id);
   res.send(result);
 });
-
-
 
 
 module.exports = router;

@@ -27,12 +27,18 @@ select { gap: 10px; display: flex; }
 #patient-form .form-group { margin-bottom: 20px;width: 95%; }
 #patient-form label { display: block;margin-bottom: 5px; }
 #patient-form input[type="text"], textarea {width: 100%;padding: 10px;border: 1px solid #ccc;border-radius: 5px; }  
+#patient-form { border-radius: 15px; width: 70%;background-color:#f0f0f0;border:1px solid #f0f0f0;padding: 20px;margin: auto; }
+
+#consultatie-form .form-group { margin-bottom: 20px;width: 95%; }
+#consultatie-form label { display: block;margin-bottom: 5px; }
+#consultatie-form input[type="text"], textarea {width: 100%;padding: 10px;border: 1px solid #ccc;border-radius: 5px; }  
+#consultatie-form { border-radius: 15px; width: 70%;background-color:#f0f0f0;border:1px solid #f0f0f0;padding: 20px;margin: auto; }
+
 #contactForm  button[type="submit"] { padding: 10px 20px;background-color: #0c570c;color: #fff;border: none;border-radius: 5px;cursor: pointer; }
 #contactForm button[type="submit"]:hover {background-color: #009900; }
 #contactForm .email-field{width: 100%;padding: 10px;border: 1px solid #ccc;border-radius: 5px; }
 #successMessage { display: none;font-size: 24px;color: green; margin-bottom: 10px; }
 #error-container { color: red;font-weight: bold;margin-top: 10px; }
-#patient-form { width: 70%;background-color:#f0f0f0;border:1px solid #f0f0f0;padding: 20px;margin: auto; }
 
 .btns button { margin-right: 5px; }
 .update-form { margin-top: 20px; }

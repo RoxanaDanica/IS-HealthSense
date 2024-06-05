@@ -140,6 +140,13 @@ async function retrievePacienti() {
     return allValues;
 }
 
+async function retrievePatientByFilter(filter) {
+    const col = db.collection('pacienti');
+    const res = await col.findOne({ ...filter });
+
+    return res;
+}
+
 // add a new patient
 async function addNewPatient(patient) {
     const col = db.collection('pacienti');
@@ -175,6 +182,7 @@ async function retrievePatient(_id) {
 
 module.exports = {
     retrievePacienti,
+    retrievePatientByFilter,
     insertPacienti,
     addNewPatient,
     updatePatient,

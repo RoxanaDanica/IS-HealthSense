@@ -1,4 +1,4 @@
-function validateConsultatietData(consultatie) {
+function validateConsultatieData(consultatie) {
     // Validation
     if(!consultatie.nume) {
      throw new Error('Please provide a value for field "nume".');
@@ -12,7 +12,7 @@ function validateConsultatietData(consultatie) {
     if(!consultatie.dataNasterii) { 
       throw new Error('Please provide a value for field "data nasterii".');
     }
-    if(!consultatie.loculConsultatie) { 
+    if(!consultatie.locConsultatie) { 
         throw new Error('Please provide a value for field "Locul unde va avea loc consultatia".');
     }
     if(!consultatie.oraConsultatie) { 
@@ -22,3 +22,8 @@ function validateConsultatietData(consultatie) {
         throw new Error('Please provide a value for field "ora la care va fi consultatia".');
     }
   }
+
+  module.exports = {
+    validateConsultatieData,
+
+};

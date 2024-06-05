@@ -112,10 +112,22 @@ async function retrieveConsultatii() {
     return allValues;
 }
 
+async function retrieveConsultatiiByFilter(filter) {
+    const col = db.collection('consultatii');
+    console.log('Using filter: ', filter);
+    const res = await col.find({...filter});
+    const allValues = await res.toArray();
+    console.log('values: ', allValues);
+
+    return allValues;
+}
+
 // add a new consultatie
 async function addNewConsultatie(consultatie) {
     const col = db.collection('consultatii');
     const res = await col.insertOne(consultatie);
+    
+    return res;
 }
 
 // update consultatie
@@ -147,6 +159,7 @@ async function retrieveConsultatie(_id) {
 
 module.exports = {
     retrieveConsultatii,
+    retrieveConsultatiiByFilter,
     insertConsultatii,
     addNewConsultatie,
     updateConsultatie,

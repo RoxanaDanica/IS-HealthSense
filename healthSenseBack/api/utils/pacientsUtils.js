@@ -6,6 +6,9 @@ function validatePatientData(patient) {
   if(!patient.prenume) { 
     throw new Error('Please provide a value for field "prenume".');
   }
+  if(!patient.email) {
+    throw new Error('Please provie a value for field "email-pacient".');
+  }
   if(!patient.adresa) { 
     throw new Error('Please provide a value for field "adresa".');
   }

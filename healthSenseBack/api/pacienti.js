@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { 
   retrievePacienti,
+  retrievePatientByFilter,
   insertPacienti,
   addNewPatient,
   updatePatient,
@@ -24,6 +25,13 @@ router.get('/pacienti', async (req, res) => {
   res.send({
     data: pacienti
   });
+});
+
+router.get('/pacientByEmail/:email', async (req, res) => {
+  const patient = await retrievePatientByFilter({ email: req.params.email });
+
+  res.send(patient);
+  return;
 });
 
 router.post('/pacient', async (req, res) => {
