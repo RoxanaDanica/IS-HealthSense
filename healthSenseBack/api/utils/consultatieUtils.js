@@ -9,12 +9,6 @@ function validateConsultatietData(consultatie) {
     if(!consultatie.adresa) { 
       throw new Error('Please provide a value for field "adresa".');
     }
-    // if(!consultatie.medicamentatie) { 
-    //   throw new Error('Please provide a value for field "medicamentatie".');
-    // }
-    // if(!consultatie.istoricBolii) { 
-    //   throw new Error('Please provide a value for field "istoric_al_bolii".');
-    // }
     if(!consultatie.dataNasterii) { 
       throw new Error('Please provide a value for field "data nasterii".');
     }

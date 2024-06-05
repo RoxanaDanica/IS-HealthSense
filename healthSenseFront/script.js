@@ -370,3 +370,72 @@ $(document).ready(function() {
         
     });
 });
+
+// get consultatii //
+fetch('http://localhost:8000/consultatii', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(responseData => {
+    const data = responseData.data;
+    if (Array.isArray(data)) {
+        const consultatiiContainer = document.getElementById('consultatii-container');
+        data.forEach(consultatie => {
+            const consultatieDiv = document.createElement('div');
+            consultatieDiv.classList.add('consultatie');
+            consultatieDiv.innerHTML = `
+                <p>Nume: ${consultatie.Nume}</p>
+                <p>Prenume: ${consultatie.Prenume}</p>
+                <p>Data nasterii: ${consultatie.dataNasterii}</p>
+                <p>Ora consultatiei: ${consultatie.oraConsultatie}</p>
+                <p>Data consultatiei: ${consultatie.dataConsultatie}</p>
+                <p>Locul consultatiei: ${consultatie.locConsultatie}</p>
+                <p>Adresa: ${consultatie.Adresa}</p>
+                <p>Sex: ${consultatie.sex}</p>
+                <div class='btns'>
+                    <button class='deleteBtn' data-id='${consultatie._id}'>Sterge</button>
+                    <button class='updateBtn' data-id='${consultatie._id}'>Modifica consultatie</button>
+                </div>
+            `;
+            consultatiiContainer.appendChild(consultatieDiv);
+        });
+    } else {
+        console.error('Unexpected data format:', data);
+    }
+})
+.catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+});
+
+/* delete consultatie */
+$(document).on('click', '.deleteBtn', function() {
+    const consultatieId = $(this).data('id');
+    fetch(`http://localhost:8000/consultatie/${consultatieId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('consultatie deleted:', data);
+        // Remove the consultatie div from the DOM
+        $(this).closest('.consultatie').remove();
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+});

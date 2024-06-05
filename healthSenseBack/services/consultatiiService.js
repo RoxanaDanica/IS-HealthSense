@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Ion",
 //         Prenume: "Popescu",
-//         Varsta: 45,
+//         dataNasterii: "1979-05-12",
 //         Adresa: "Str. Florilor, nr. 12",
 //         oraConsultatie: "10:00",
 //         dataConsultatie: "2024-06-10",
@@ -14,7 +14,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Maria",
 //         Prenume: "Ionescu",
-//         Varsta: 30,
+//         dataNasterii: "1994-03-21",
 //         Adresa: "Str. Libertatii, nr. 5",
 //         oraConsultatie: "11:00",
 //         dataConsultatie: "2024-06-11",
@@ -23,7 +23,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "George",
 //         Prenume: "Vasilescu",
-//         Varsta: 50,
+//         dataNasterii: "1974-11-09",
 //         Adresa: "Str. Pacii, nr. 3",
 //         oraConsultatie: "12:00",
 //         dataConsultatie: "2024-06-12",
@@ -32,7 +32,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Elena",
 //         Prenume: "Marinescu",
-//         Varsta: 40,
+//         dataNasterii: "1984-07-30",
 //         Adresa: "Str. Viitorului, nr. 8",
 //         oraConsultatie: "13:00",
 //         dataConsultatie: "2024-06-13",
@@ -41,7 +41,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Florin",
 //         Prenume: "Popa",
-//         Varsta: 35,
+//         dataNasterii: "1989-01-17",
 //         Adresa: "Str. Sperantei, nr. 7",
 //         oraConsultatie: "14:00",
 //         dataConsultatie: "2024-06-14",
@@ -50,7 +50,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Ana",
 //         Prenume: "Dumitrescu",
-//         Varsta: 60,
+//         dataNasterii: "1964-04-23",
 //         Adresa: "Str. Trandafirilor, nr. 2",
 //         oraConsultatie: "15:00",
 //         dataConsultatie: "2024-06-15",
@@ -59,7 +59,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Mihai",
 //         Prenume: "Georgescu",
-//         Varsta: 55,
+//         dataNasterii: "1969-02-28",
 //         Adresa: "Str. Independentei, nr. 10",
 //         oraConsultatie: "16:00",
 //         dataConsultatie: "2024-06-16",
@@ -68,7 +68,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Ioana",
 //         Prenume: "Stanescu",
-//         Varsta: 25,
+//         dataNasterii: "1999-12-15",
 //         Adresa: "Str. Victoriei, nr. 1",
 //         oraConsultatie: "17:00",
 //         dataConsultatie: "2024-06-17",
@@ -77,7 +77,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Andrei",
 //         Prenume: "Radu",
-//         Varsta: 65,
+//         dataNasterii: "1959-09-20",
 //         Adresa: "Str. Unirii, nr. 6",
 //         oraConsultatie: "18:00",
 //         dataConsultatie: "2024-06-18",
@@ -86,7 +86,7 @@ const { ObjectId } = require('mongodb');
 //     {
 //         Nume: "Cristina",
 //         Prenume: "Pop",
-//         Varsta: 28,
+//         dataNasterii: "1996-06-05",
 //         Adresa: "Str. Eroilor, nr. 4",
 //         oraConsultatie: "19:00",
 //         dataConsultatie: "2024-06-19",
@@ -96,9 +96,10 @@ const { ObjectId } = require('mongodb');
 
 // console.log(consultatii);
 
+
 async function insertConsultatii() {
     const col = db.collection('consultatii');
-    const res = await col.insertMany(consultaii);
+    const res = await col.insertMany(consultatii);
     return res;
 }
 
